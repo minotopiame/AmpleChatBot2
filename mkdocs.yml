@@ -1,0 +1,7 @@
+site_name: AmpleChatBot
+site_favicon: favicon.ico
+repo_url: https://github.com/Drepic26/AmpleChatBot2
+theme: readthedocs
+
+pages:
+  - ['index.md', 'Home']
