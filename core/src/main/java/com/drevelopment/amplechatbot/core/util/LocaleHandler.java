@@ -9,7 +9,7 @@ import com.drevelopment.amplechatbot.api.Ample;
 
 public final class LocaleHandler {
 
-	private static final String BUNDLE_ROOT = "com.drevelopment.couponcodes.locale.locale";
+	private static final String BUNDLE_ROOT = "com.drevelopment.amplechatbot.locale.locale";
 
 	private static ResourceBundle bundle = null;
     private static ResourceBundle enBundle = null;
