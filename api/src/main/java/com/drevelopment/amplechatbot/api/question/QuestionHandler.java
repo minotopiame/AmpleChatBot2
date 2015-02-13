@@ -1,14 +1,24 @@
 package com.drevelopment.amplechatbot.api.question;
 
+import java.util.HashMap;
+import java.util.List;
+
 public interface QuestionHandler {
 
-	/**
-	 * Adds a question to the database
-	 * @param question The question to add
-	 * @return The questions question id. -1 if the question was not added.
-	 */
-	public int addQuestionToDatabase(String question);
+	public boolean addQuestionToDatabase(Question question);
 
-	public boolean addAnswerToDatabase(String answer, int qid);
+	public boolean updateQuestion(Question question);
+
+	public HashMap<Integer, HashMap<String, String>> listQuestions();
+
+	public void deleteQuestion(Question question);
+
+	public boolean questionExists(int id);
+
+	public Question getQuestion(int id);
+
+	public Question getQuestion(String question);
+
+	public List<Question> getQuestions();
 
 }

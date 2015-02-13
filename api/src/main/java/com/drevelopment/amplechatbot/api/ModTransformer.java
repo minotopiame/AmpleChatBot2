@@ -34,4 +34,10 @@ public interface ModTransformer {
 	 */
 	public String getPlayerName(String UUID);
 
+	/**
+	 * Broadcasts a message to the server.
+	 * @param message The message to broadcast
+	 */
+	public void broadcastMessage(String message);
+
 }

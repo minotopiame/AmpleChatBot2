@@ -21,4 +21,16 @@ public interface ConfigHandler {
 	 */
 	public String getLocale();
 
+	/**
+	 * Gets the name of the bot
+	 * @return The name of the bot
+	 */
+	public String getBotName();
+
+	/**
+	 * Gets the format for chat
+	 * @return The format for chat
+	 */
+	public String getDisplay();
+
 }
