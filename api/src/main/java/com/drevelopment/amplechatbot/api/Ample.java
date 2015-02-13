@@ -5,6 +5,7 @@ import com.drevelopment.amplechatbot.api.config.ConfigHandler;
 import com.drevelopment.amplechatbot.api.database.DatabaseHandler;
 import com.drevelopment.amplechatbot.api.event.EventHandler;
 import com.drevelopment.amplechatbot.api.permission.PermissionHandler;
+import com.drevelopment.amplechatbot.api.question.QuestionHandler;
 
 public class Ample {
 
@@ -14,6 +15,7 @@ public class Ample {
 	private static EventHandler eventHandler;
 	private static CommandHandler commandHandler;
 	private static DatabaseHandler databaseHandler;
+	private static QuestionHandler questionHandler;
 
 	public static ModTransformer getModTransformer() {
 		return modTransformer;
@@ -61,6 +63,14 @@ public class Ample {
 
 	public static void setDatabaseHandler(DatabaseHandler dh) {
 		databaseHandler = dh;
+	}
+
+	public static QuestionHandler getQuestionHandler() {
+		return questionHandler;
+	}
+
+	public static void setQuestionHandler(QuestionHandler qh) {
+		questionHandler = qh;
 	}
 
 }
