@@ -21,7 +21,9 @@ public class QListCommand implements Runnable {
 			String color = "AQUA";
 			for (Question question : Ample.getQuestionHandler().getQuestions()) {
 				sender.sendMessage(LocaleHandler.getString("Command.QList.Question", color, question.getId(), question.getQuestion()));
-				sender.sendMessage(LocaleHandler.getString("Command.QList.Answer", color, question.getAnswer()));
+				if (question.getAnswer() != null) {
+					sender.sendMessage(LocaleHandler.getString("Command.QList.Answer", color, question.getAnswer()));
+				}
 				if (color.equals("AQUA"))
 					color = "YELLOW";
 				else

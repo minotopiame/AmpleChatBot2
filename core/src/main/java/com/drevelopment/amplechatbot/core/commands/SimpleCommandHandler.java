@@ -3,6 +3,7 @@ package com.drevelopment.amplechatbot.core.commands;
 import com.drevelopment.amplechatbot.api.command.CommandException;
 import com.drevelopment.amplechatbot.api.command.CommandHandler;
 import com.drevelopment.amplechatbot.api.command.CommandSender;
+import com.drevelopment.amplechatbot.core.commands.runnable.AmpleSayCommand;
 import com.drevelopment.amplechatbot.core.commands.runnable.AnswerCommand;
 import com.drevelopment.amplechatbot.core.commands.runnable.DelQuestionCommand;
 import com.drevelopment.amplechatbot.core.commands.runnable.QListCommand;
@@ -35,6 +36,7 @@ public class SimpleCommandHandler implements CommandHandler {
 			new DelQuestionCommand(sender, args).run();
 			return true;
 		} else if (command.equalsIgnoreCase("amplesay")) {
+			new AmpleSayCommand(sender, args).run();
 			return true;
 		}
 		return false;
@@ -49,7 +51,6 @@ public class SimpleCommandHandler implements CommandHandler {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Answer"));
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Qlist"));
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Delquestion"));
-			sender.sendMessage(LocaleHandler.getString("Command.Help.Ampleupdate"));
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Amplesay"));
 			return true;
 		} else if (command.equalsIgnoreCase("question")) {
@@ -63,9 +64,7 @@ public class SimpleCommandHandler implements CommandHandler {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Answer"));
 			return true;
 		} else if (command.equalsIgnoreCase("qlist")) {
-			sender.sendMessage(LocaleHandler.getString("Command.Help.Header"));
-			sender.sendMessage(LocaleHandler.getString("Command.Help.Wildcards"));
-			sender.sendMessage(LocaleHandler.getString("Command.Help.Qlist"));
+			new QListCommand(sender, null).run();;
 			return true;
 		} else if (command.equalsIgnoreCase("delquestion")) {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Header"));

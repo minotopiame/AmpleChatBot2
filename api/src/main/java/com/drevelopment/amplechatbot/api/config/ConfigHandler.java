@@ -33,4 +33,26 @@ public interface ConfigHandler {
 	 */
 	public String getDisplay();
 
+	public Double getAllowable();
+
+	public Integer[] getAbuseRatio();
+
+	public String getAbuseAction();
+
+	public String getAbuseKick();
+
+	public String getSpamWarn();
+
+	public String[] getFloodAction();
+
+	public String getFloodWarn();
+
+	public String getFloodKick();
+
+	public String getFloodBan();
+
+	public Long getMsgDelay();
+
+	public Integer[] getFloodRatio();
+
 }
