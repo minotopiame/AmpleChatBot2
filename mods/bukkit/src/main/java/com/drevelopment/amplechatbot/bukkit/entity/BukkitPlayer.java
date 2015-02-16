@@ -94,4 +94,9 @@ public class BukkitPlayer extends SimplePlayer {
 		return null;
 	}
 
+	@Override
+	public void kickPlayer(String message) {
+		bukkitPlayer.kickPlayer(message);
+	}
+
 }

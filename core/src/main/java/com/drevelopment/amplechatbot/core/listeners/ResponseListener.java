@@ -31,10 +31,10 @@ public class ResponseListener {
 		final String response = value.firstEntry().getValue();
 		final int id = value.firstEntry().getKey();
 		//TODO Usage
-
-		//int v = rs.getInt(1);
-		//int c = config.getAbuseRatio()[0];
-		//if(v <= c) {
+		Ample.getQuestionHandler().addUsage(event.getPlayer().getName(), id);
+		int v = Ample.getQuestionHandler().getUsage(id);
+		int c = Ample.getConfigHandler().getAbuseRatio()[0];
+		if(v <= c) {
 			String[] newline = response.split(";");
 			for(int a=0;a < newline.length;a++) {
 				final String line = newline[a];
@@ -45,27 +45,24 @@ public class ResponseListener {
 				@Override
 				public void run() {
 					if(!line.isEmpty()) {
-							/*if(line.length() > 4 && line.toLowerCase().substring(0, 4).equals("cmd:")) {
-								String cmd = db.unescape(line.toLowerCase().substring(4));
-								Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),FormatChat.formatChat(cmd.trim(),event.getPlayer()));
-							} else if(line.length() > 5 && line.toLowerCase().substring(0, 5).equals("pcmd:")) {
-								String cmd = db.unescape(line.toLowerCase().substring(5));
-								Bukkit.getServer().dispatchCommand(event.getPlayer(),FormatChat.formatChat(cmd.trim(), event.getPlayer()));
-							} else if(line.length() > 3 && line.toLowerCase().substring(0, 3).equals("pm:")) {
-								plugin.loger("pm to "+event.getPlayer().getName()+": "+line.substring(3));
-								event.getPlayer().sendMessage(FormatChat.formatChat(FormatChat.setDisplay(Ample.getConfigHandler().getDisplay(),db.unescape(line.substring(3)), config.getBotName()), event));
-							} else if(line.length() > 5 && line.toLowerCase().substring(0, 5).equals("chat:")) {
-								event.getPlayer().chat(FormatChat.formatChat(FormatChat.setDisplay(config.getDisplay(),db.unescape(line.substring(5)), config.getBotName()), event));
-							} else {
-								Ample.getModTransformer().broadcastMessage(fmsg);
-							}*/
-						Ample.getModTransformer().broadcastMessage(fmsg);
+						if(line.length() > 4 && line.toLowerCase().substring(0, 4).equals("cmd:")) {
+							//String cmd = db.unescape(line.toLowerCase().substring(4));
+							//Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),FormatChat.formatChat(cmd.trim(),event.getPlayer()));
+						} else if(line.length() > 5 && line.toLowerCase().substring(0, 5).equals("pcmd:")) {
+							//String cmd = db.unescape(line.toLowerCase().substring(5));
+							//Bukkit.getServer().dispatchCommand(event.getPlayer(),FormatChat.formatChat(cmd.trim(), event.getPlayer()));
+						} else if(line.length() > 3 && line.toLowerCase().substring(0, 3).equals("pm:")) {
+							//plugin.loger("pm to "+event.getPlayer().getName()+": "+line.substring(3));
+							//event.getPlayer().sendMessage(FormatChat.formatChat(FormatChat.setDisplay(Ample.getConfigHandler().getDisplay(),db.unescape(line.substring(3)), config.getBotName()), event));
+						} else {
+							Ample.getModTransformer().broadcastMessage(fmsg);
+						}
 					}
 				}
 			});
 			}
-		//} else {
-		//	if(config.getAbuseAction().equalsIgnoreCase("kick")) event.getPlayer().kickPlayer(config.getAbuseKick());
-		//}
+		} else {
+			if(Ample.getConfigHandler().getAbuseAction().equalsIgnoreCase("kick")) event.getPlayer().kickPlayer(Ample.getConfigHandler().getAbuseKick());
+		}
 	}
 }

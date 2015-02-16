@@ -161,4 +161,37 @@ public class BukkitQuestionHandler implements QuestionHandler {
 		return map;
 	}
 
+	@Override
+	public void addUsage(String playerName, int id) {
+		try {
+			Connection con = databaseHandler.getConnection();
+			PreparedStatement p = null;
+
+			p = con.prepareStatement("INSERT INTO amplechatbot_Usage (player,dtime,question)"+"VALUES (?,?,?)");
+			p.setString(1, playerName);
+			p.setInt(2, databaseHandler.currentEpoch());
+			p.setInt(3, id);
+
+			p.addBatch();
+			con.setAutoCommit(false);
+			p.executeBatch();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}
+	}
+
+	@Override
+	public int getUsage(int id) {
+		int usage = 0;
+		try {
+			ResultSet rs = databaseHandler.query("SELECT COUNT(dtime) FROM amplechatbot_Usage WHERE question = "+id+" AND dtime < "+databaseHandler.currentEpoch()+" AND dtime > "+(databaseHandler.currentEpoch() - Ample.getConfigHandler().getAbuseRatio()[1]));
+			usage = rs.getInt(1);
+			return usage;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return usage;
+		}
+	}
+
 }

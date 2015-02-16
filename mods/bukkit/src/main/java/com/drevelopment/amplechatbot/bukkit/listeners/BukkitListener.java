@@ -58,7 +58,7 @@ public class BukkitListener implements Listener {
 		}
 		return command.trim();
 	}
-	
+
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
 		if (!event.isCancelled()) {

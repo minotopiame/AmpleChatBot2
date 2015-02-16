@@ -37,4 +37,6 @@ public interface Player extends CommandSender {
 
 	public String getLocale();
 
+	public void kickPlayer(String message);
+
 }

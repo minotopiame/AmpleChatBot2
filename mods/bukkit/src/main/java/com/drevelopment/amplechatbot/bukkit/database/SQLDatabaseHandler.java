@@ -95,6 +95,26 @@ public class SQLDatabaseHandler implements DatabaseHandler {
 		return st.execute(table);
 	}
 
+	public int currentEpoch() {
+		try {
+			if (dop instanceof MySQLOptions) {
+				Connection connection = this.getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet rs = statement.executeQuery("SELECT UNIX_TIMESTAMP(now());");
+				return rs.getInt(1);
+			} else if (dop instanceof SQLiteOptions) {
+				Connection connection = this.getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet rs = statement.executeQuery("SELECT strftime('%s','now');");
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return 0;
+	}
+
 	@Override
 	public String getDatabaseType() {
 		if (dop instanceof MySQLOptions) {

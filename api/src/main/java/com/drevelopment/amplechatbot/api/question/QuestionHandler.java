@@ -23,4 +23,8 @@ public interface QuestionHandler {
 
 	public TreeMap<Double, TreeMap<Integer,String>> getResponses(String message);
 
+	public void addUsage(String playerName, int id);
+
+	public int getUsage(int id);
+
 }
