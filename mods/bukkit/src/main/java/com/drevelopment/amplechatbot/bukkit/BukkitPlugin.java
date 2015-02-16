@@ -14,10 +14,12 @@ import com.drevelopment.amplechatbot.bukkit.database.options.MySQLOptions;
 import com.drevelopment.amplechatbot.bukkit.database.options.SQLiteOptions;
 import com.drevelopment.amplechatbot.bukkit.listeners.BukkitListener;
 import com.drevelopment.amplechatbot.bukkit.permission.SuperPermsPermissionHandler;
+import com.drevelopment.amplechatbot.bukkit.permission.VaultPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.question.BukkitQuestionHandler;
 import com.drevelopment.amplechatbot.core.commands.SimpleCommandHandler;
 import com.drevelopment.amplechatbot.core.event.SimpleEventHandler;
 import com.drevelopment.amplechatbot.core.listeners.ResponseListener;
+import com.drevelopment.amplechatbot.core.util.LocaleHandler;
 
 public class BukkitPlugin extends JavaPlugin {
 
@@ -32,11 +34,14 @@ public class BukkitPlugin extends JavaPlugin {
 		Ample.setModTransformer(new BukkitModTransformer(this));
 		Ample.setConfigHandler(new BukkitConfigHandler(this));
 
-		//TEMP
-		Ample.setPermissionHandler(new SuperPermsPermissionHandler());
+		if (getServer().getPluginManager().getPlugin("Vault") != null) {
+			Ample.setPermissionHandler(new VaultPermissionHandler());
+		} else {
+			Ample.setPermissionHandler(new SuperPermsPermissionHandler());
+		}
 
 		if (!setupSQL()) {
-			logger.severe("Database could not be setup. AmpleChatBot will now disable");
+			logger.severe(LocaleHandler.getString("Console.SQL.SetupFailed"));
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
@@ -44,6 +49,23 @@ public class BukkitPlugin extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new BukkitListener(this), this);
 		Ample.getEventHandler().subscribe(ResponseListener.class);
+	}
+
+	@Override
+	public void onDisable() {
+		try {
+			((SQLDatabaseHandler)Ample.getDatabaseHandler()).close();
+		} catch (SQLException e) {
+			logger.severe(LocaleHandler.getString("Console.SQL.CloseFailed"));
+		}
+
+		Ample.setDatabaseHandler(null);
+		Ample.setCommandHandler(null);
+		Ample.setConfigHandler(null);
+		Ample.setEventHandler(null);
+		Ample.setModTransformer(null);
+		Ample.setPermissionHandler(null);
+		Ample.setQuestionHandler(null);
 	}
 
 	private boolean setupSQL() {
@@ -55,7 +77,7 @@ public class BukkitPlugin extends JavaPlugin {
 			dataop = new SQLiteOptions(new File(getDataFolder()+"/ample_data.db"));
 		}
 		else if (!((BukkitConfigHandler)Ample.getConfigHandler()).getSQLValue().equalsIgnoreCase("MySQL") && !((BukkitConfigHandler)Ample.getConfigHandler()).getSQLValue().equalsIgnoreCase("SQLite")) {
-			logger.severe("The SQLType has the unknown value of: "+((BukkitConfigHandler)Ample.getConfigHandler()).getSQLValue());
+			logger.severe(LocaleHandler.getString("Console.SQL.UnknownValue", ((BukkitConfigHandler)Ample.getConfigHandler()).getSQLValue()));
 			return false;
 		}
 
@@ -70,7 +92,7 @@ public class BukkitPlugin extends JavaPlugin {
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Flood (`dtime` integer, `action` integer, `player` varchar(50))");
 			} else if (dataop instanceof SQLiteOptions) {
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Responses (id INTEGER PRIMARY KEY AUTOINCREMENT, keyphrase varchar(200), response varchar(200))");
-				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Usage (dtime INTEGER, action INTEGER, player varchar(50))");
+				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Usage (dtime INTEGER, question INTEGER, player varchar(50))");
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Spam (dtime integer, action integer, player varchar(50))");
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Flood (dtime integer, action integer, player varchar(50))");
 			}
