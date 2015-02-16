@@ -12,11 +12,12 @@ import com.drevelopment.amplechatbot.bukkit.database.SQLDatabaseHandler;
 import com.drevelopment.amplechatbot.bukkit.database.options.DatabaseOptions;
 import com.drevelopment.amplechatbot.bukkit.database.options.MySQLOptions;
 import com.drevelopment.amplechatbot.bukkit.database.options.SQLiteOptions;
-import com.drevelopment.amplechatbot.bukkit.listeners.BukkitCommandListener;
+import com.drevelopment.amplechatbot.bukkit.listeners.BukkitListener;
 import com.drevelopment.amplechatbot.bukkit.permission.SuperPermsPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.question.BukkitQuestionHandler;
 import com.drevelopment.amplechatbot.core.commands.SimpleCommandHandler;
 import com.drevelopment.amplechatbot.core.event.SimpleEventHandler;
+import com.drevelopment.amplechatbot.core.listeners.ResponseListener;
 
 public class BukkitPlugin extends JavaPlugin {
 
@@ -41,7 +42,8 @@ public class BukkitPlugin extends JavaPlugin {
 		}
 		Ample.setQuestionHandler(new BukkitQuestionHandler(this));
 
-		getServer().getPluginManager().registerEvents(new BukkitCommandListener(this), this);
+		getServer().getPluginManager().registerEvents(new BukkitListener(this), this);
+		Ample.getEventHandler().subscribe(ResponseListener.class);
 	}
 
 	private boolean setupSQL() {

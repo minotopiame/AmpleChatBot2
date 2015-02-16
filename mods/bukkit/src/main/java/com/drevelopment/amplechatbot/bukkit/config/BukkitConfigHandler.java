@@ -95,11 +95,6 @@ public class BukkitConfigHandler implements ConfigHandler {
 	}
 
 	@Override
-	public Long getMsgDelay() {
-		return config.getLong("Delay", 5);
-	}
-
-	@Override
 	public Integer[] getFloodRatio() {
 		String[] ratio = config.getString("FloodRatio", "5;10").split(";");
 		Integer v1 = Integer.parseInt(ratio[0]);

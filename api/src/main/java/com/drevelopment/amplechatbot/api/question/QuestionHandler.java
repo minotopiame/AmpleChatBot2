@@ -1,6 +1,7 @@
 package com.drevelopment.amplechatbot.api.question;
 
 import java.util.List;
+import java.util.TreeMap;
 
 public interface QuestionHandler {
 
@@ -19,5 +20,7 @@ public interface QuestionHandler {
 	public Question getQuestion(String question);
 
 	public List<Question> getQuestions();
+
+	public TreeMap<Double, TreeMap<Integer,String>> getResponses(String message);
 
 }

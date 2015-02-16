@@ -2,19 +2,21 @@ package com.drevelopment.amplechatbot.bukkit.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.drevelopment.amplechatbot.api.Ample;
 import com.drevelopment.amplechatbot.api.command.Command;
 import com.drevelopment.amplechatbot.api.command.CommandException;
 import com.drevelopment.amplechatbot.api.entity.Player;
+import com.drevelopment.amplechatbot.api.event.chat.PlayerChatEvent;
 import com.drevelopment.amplechatbot.bukkit.BukkitPlugin;
 
-public class BukkitCommandListener implements Listener {
+public class BukkitListener implements Listener {
 
 	private BukkitPlugin plugin;
 
-	public BukkitCommandListener(BukkitPlugin plugin) {
+	public BukkitListener(BukkitPlugin plugin) {
 		this.plugin = plugin;
 	}
 
@@ -55,6 +57,13 @@ public class BukkitCommandListener implements Listener {
 			}
 		}
 		return command.trim();
+	}
+	
+	@EventHandler
+	public void onChat(AsyncPlayerChatEvent event) {
+		if (!event.isCancelled()) {
+			Ample.getEventHandler().post(new PlayerChatEvent(Ample.getModTransformer().getPlayer(event.getPlayer().getUniqueId().toString()), event.getMessage()));
+		}
 	}
 
 }

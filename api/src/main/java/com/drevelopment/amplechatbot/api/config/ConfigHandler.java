@@ -51,8 +51,6 @@ public interface ConfigHandler {
 
 	public String getFloodBan();
 
-	public Long getMsgDelay();
-
 	public Integer[] getFloodRatio();
 
 }

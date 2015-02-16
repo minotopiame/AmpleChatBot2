@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import com.drevelopment.amplechatbot.api.Ample;
 import com.drevelopment.amplechatbot.api.question.Question;
@@ -123,6 +124,41 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			e.printStackTrace();
 		}
 		return q;
+	}
+
+	@Override
+	public TreeMap<Double, TreeMap<Integer, String>> getResponses(String message) {
+		TreeMap<Double,TreeMap<Integer,String>> map = new TreeMap<Double,TreeMap<Integer,String>>();
+		try {
+			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses ORDER BY keyphrase DESC");
+			if (rs != null) {
+				while (rs.next()) {
+					String response = rs.getString("keyphrase").toLowerCase();
+					double reslength = response.length();
+					double msglength = message.length();
+					double rel;
+					if(reslength >= msglength) rel = ((msglength/reslength)*100);
+					else rel = ((reslength/msglength)*100);
+					String[] mary = message.split(" ");
+					double count = 0;
+					for(int i=0;i < mary.length;i++) {
+						if(response.contains(mary[i])) count ++;
+					}
+					double wordrel;
+					if (count <= mary.length) wordrel = ((count/mary.length)*100);
+					else wordrel = ((mary.length/count)*100);
+					double avgrel = ((wordrel+rel)/2);
+					TreeMap<Integer,String> temp = new TreeMap<Integer,String>();
+					temp.put(rs.getInt("id"), rs.getString("response"));
+					map.put(avgrel, temp);
+					return map;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return map;
+		}
+		return map;
 	}
 
 }

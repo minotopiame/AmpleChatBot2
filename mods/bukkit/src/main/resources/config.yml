@@ -17,12 +17,6 @@ BotName: 'AmpleBot'
 # * Chat Colors and formating is supported!
 Display: '<%botname> %message'
 
-# Response Delay
-# Allows you to set how long the bot will wait to respond in server ticks.
-#   - The Default is 2 server ticks.
-#   - There are 20 ticks per second.
-Delay: 2
-
 # Acceptable response rate in percentage:
 # Acceptable range 0-100
 # Anything greater then the percentage will be the response,
