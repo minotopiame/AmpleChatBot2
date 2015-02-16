@@ -11,10 +11,9 @@ public final class FormatChat {
 	}
 
 	public static String formatChat(String chat, CommandSender sender)  {
-
+		chat = Color.replaceColors(chat);
 		if (sender instanceof Player)
 			chat = chat.replaceAll("%player", ((Player)sender).getName());
-
 		return chat;
 	}
 

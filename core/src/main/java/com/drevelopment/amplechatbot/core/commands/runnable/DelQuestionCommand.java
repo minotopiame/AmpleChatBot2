@@ -19,15 +19,13 @@ public class DelQuestionCommand implements Runnable {
 	@Override
 	public void run() {
 		if (sender.hasPermission("ample.delete")) {
-			if (args.length < 1) {
-				if (Util.isInteger(args[1])) {
-					Question question = Ample.getQuestionHandler().getQuestion(Integer.parseInt(args[1]));
+				if (Util.isInteger(args[0])) {
+					Question question = Ample.getQuestionHandler().getQuestion(Integer.parseInt(args[0]));
 					if ( question != null) {
 						Ample.getQuestionHandler().deleteQuestion(question);
-						sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.Deleted", args[1]));
-					} else sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.NotFound", args[1]));
-				} else sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.InvalidID", args[1]));
-			} else sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.NoID"));
+						sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.Deleted", args[0]));
+					} else sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.NotFound", args[0]));
+				} else sender.sendMessage(LocaleHandler.getString("Command.DelQuestion.InvalidID", args[0]));
 		} else sender.sendMessage(LocaleHandler.getString("Command.NoPermission"));
 	}
 
