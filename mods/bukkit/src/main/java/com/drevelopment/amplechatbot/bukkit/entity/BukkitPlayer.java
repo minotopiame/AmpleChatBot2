@@ -24,7 +24,6 @@ public class BukkitPlayer extends SimplePlayer {
 	}
 
 	public void sendMessage(String message) {
-		message = ((SQLDatabaseHandler)Ample.getDatabaseHandler()).unescape(message);
 		for (String line : message.split("\n")) {
 			bukkitPlayer.sendMessage(Color.replaceColors(line));
 		}

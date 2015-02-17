@@ -115,23 +115,27 @@ public class SQLDatabaseHandler implements DatabaseHandler {
 		return 0;
 	}
 
-	public String escape_quotes(String str) {
-		String target = "\"";
-		String replacement = "\"\"";
-		str = str.replaceAll(target, replacement);
-		target = "'";
-		replacement = "''";
-		str = str.replaceAll(target, replacement);
+	public String escapeQuotes(String str) {
+		if (str != null) {
+			String target = "\"";
+			String replacement = "\"\"";
+			str = str.replaceAll(target, replacement);
+			target = "'";
+			replacement = "''";
+			str = str.replaceAll(target, replacement);
+		}
 		return str;
 	}
 
-	public String unescape(String str) {
-		String target = "\"\"";
-		String replacement = "\"";
-		str = str.replaceAll(target, replacement);
-		target = "''";
-		replacement = "'";
-		str = str.replaceAll(target, replacement);
+	public String unescapeQuotes(String str) {
+		if (str != null) {
+			String target = "\"\"";
+			String replacement = "\"";
+			str = str.replaceAll(target, replacement);
+			target = "''";
+			replacement = "'";
+			str = str.replaceAll(target, replacement);
+		}
 		return str;
 	}
 

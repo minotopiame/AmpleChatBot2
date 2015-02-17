@@ -13,7 +13,7 @@ public class ResponseListener {
 	@AmpleListener
 	public void onChat(PlayerChatEvent event ) {
 		if( event.getPlayer().hasPermission("ample.invoke")) {
-			String message = event.getMessage().toLowerCase();
+			String message = event.getMessage();
 			if (message.length() > 3) {
 				TreeMap<Double,TreeMap<Integer,String>> rank = Ample.getQuestionHandler().getResponses(message);
 				try {

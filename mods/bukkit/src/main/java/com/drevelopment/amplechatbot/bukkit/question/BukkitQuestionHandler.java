@@ -34,7 +34,7 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			PreparedStatement p = null;
 
 			p = con.prepareStatement("INSERT INTO amplechatbot_Responses (keyphrase)"+"VALUES (?)");
-			p.setString(1, question.getQuestion());
+			p.setString(1, databaseHandler.escapeQuotes(question.getQuestion()));
 
 			p.addBatch();
 			con.setAutoCommit(false);
@@ -49,8 +49,8 @@ public class BukkitQuestionHandler implements QuestionHandler {
 	@Override
 	public void updateQuestion(Question question) {
 		try {
-			databaseHandler.query("UPDATE amplechatbot_Responses SET keyphrase='"+question.getQuestion()+"' WHERE id='"+question.getId()+"'");
-			databaseHandler.query("UPDATE amplechatbot_Responses SET response='"+question.getAnswer()+"' WHERE id='"+question.getId()+"'");
+			databaseHandler.query("UPDATE amplechatbot_Responses SET keyphrase='"+databaseHandler.escapeQuotes(question.getQuestion())+"' WHERE id='"+question.getId()+"'");
+			databaseHandler.query("UPDATE amplechatbot_Responses SET response='"+databaseHandler.escapeQuotes(question.getAnswer())+"' WHERE id='"+question.getId()+"'");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,8 +85,8 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses WHERE id='"+id+"'");
 			if (databaseHandler.getDatabaseOptions() instanceof MySQLOptions) rs.first();
 			int qid = rs.getInt("id");
-			String question = rs.getString("keyphrase");
-			String response = rs.getString("response");
+			String question = databaseHandler.unescapeQuotes(rs.getString("keyphrase"));
+			String response = databaseHandler.unescapeQuotes(rs.getString("response"));
 
 			return new SimpleQuestion().setId(qid).setQuestion(question).setAnswer(response);
 		} catch (SQLException e) {
@@ -98,11 +98,11 @@ public class BukkitQuestionHandler implements QuestionHandler {
 	@Override
 	public Question getQuestion(String question) {
 		try {
-			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses WHERE keyphrase='"+question+"'");
+			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses WHERE keyphrase='"+databaseHandler.escapeQuotes(question)+"'");
 			if (databaseHandler.getDatabaseOptions() instanceof MySQLOptions) rs.first();
 			int id = rs.getInt("id");
-			String qquestion = rs.getString("keyphrase");
-			String response = rs.getString("response");
+			String qquestion = databaseHandler.unescapeQuotes(rs.getString("keyphrase"));
+			String response = databaseHandler.unescapeQuotes(rs.getString("response"));
 
 			return new SimpleQuestion().setId(id).setQuestion(qquestion).setAnswer(response);
 		} catch (SQLException e) {
@@ -118,7 +118,7 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses");
 			if (rs==null) return q;
 			while (rs.next())
-				q.add(new SimpleQuestion().setId(rs.getInt("id")).setQuestion(rs.getString("keyphrase")).setAnswer(rs.getString("response")));
+				q.add(new SimpleQuestion().setId(rs.getInt("id")).setQuestion(databaseHandler.unescapeQuotes(rs.getString("keyphrase"))).setAnswer(databaseHandler.unescapeQuotes(rs.getString("response"))));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,7 +133,8 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses ORDER BY keyphrase DESC");
 			if (rs != null) {
 				while (rs.next()) {
-					String response = rs.getString("keyphrase").toLowerCase();
+					message = message.toLowerCase();
+					String response = databaseHandler.unescapeQuotes(rs.getString("keyphrase").toLowerCase());
 					double reslength = response.length();
 					double msglength = message.length();
 					double rel;
