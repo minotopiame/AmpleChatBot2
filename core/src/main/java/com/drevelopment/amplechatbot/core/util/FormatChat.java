@@ -1,5 +1,6 @@
 package com.drevelopment.amplechatbot.core.util;
 
+import com.drevelopment.amplechatbot.api.Ample;
 import com.drevelopment.amplechatbot.api.command.CommandSender;
 import com.drevelopment.amplechatbot.api.entity.Player;
 
@@ -14,6 +15,7 @@ public final class FormatChat {
 		chat = Color.replaceColors(chat);
 		if (sender instanceof Player)
 			chat = chat.replaceAll("%player", ((Player)sender).getName());
+		chat = chat.replaceAll("%botname", Ample.getConfigHandler().getBotName());
 		return chat;
 	}
 
