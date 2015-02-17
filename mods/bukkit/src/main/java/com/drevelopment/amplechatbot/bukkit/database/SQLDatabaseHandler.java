@@ -101,6 +101,7 @@ public class SQLDatabaseHandler implements DatabaseHandler {
 				Connection connection = this.getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet rs = statement.executeQuery("SELECT UNIX_TIMESTAMP(now());");
+				rs.first();
 				return rs.getInt(1);
 			} else if (dop instanceof SQLiteOptions) {
 				Connection connection = this.getConnection();
