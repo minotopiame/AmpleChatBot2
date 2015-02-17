@@ -115,6 +115,26 @@ public class SQLDatabaseHandler implements DatabaseHandler {
 		return 0;
 	}
 
+	public String escape_quotes(String str) {
+		String target = "\"";
+		String replacement = "\"\"";
+		str = str.replaceAll(target, replacement);
+		target = "'";
+		replacement = "''";
+		str = str.replaceAll(target, replacement);
+		return str;
+	}
+
+	public String unescape(String str) {
+		String target = "\"\"";
+		String replacement = "\"";
+		str = str.replaceAll(target, replacement);
+		target = "''";
+		replacement = "'";
+		str = str.replaceAll(target, replacement);
+		return str;
+	}
+
 	@Override
 	public String getDatabaseType() {
 		if (dop instanceof MySQLOptions) {

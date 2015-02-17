@@ -151,7 +151,6 @@ public class BukkitQuestionHandler implements QuestionHandler {
 					TreeMap<Integer,String> temp = new TreeMap<Integer,String>();
 					temp.put(rs.getInt("id"), rs.getString("response"));
 					map.put(avgrel, temp);
-					return map;
 				}
 			}
 		} catch (SQLException e) {

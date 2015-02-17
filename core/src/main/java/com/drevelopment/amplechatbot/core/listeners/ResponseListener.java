@@ -13,7 +13,7 @@ public class ResponseListener {
 	@AmpleListener
 	public void onChat(PlayerChatEvent event ) {
 		if( event.getPlayer().hasPermission("ample.invoke")) {
-			String message = event.getMessage();
+			String message = event.getMessage().toLowerCase();
 			if (message.length() > 3) {
 				TreeMap<Double,TreeMap<Integer,String>> rank = Ample.getQuestionHandler().getResponses(message);
 				try {
@@ -30,7 +30,6 @@ public class ResponseListener {
 	private void execute(TreeMap<Integer, String> value, final PlayerChatEvent event) {
 		final String response = value.firstEntry().getValue();
 		final int id = value.firstEntry().getKey();
-		//TODO Usage
 		Ample.getQuestionHandler().addUsage(event.getPlayer().getName(), id);
 		int v = Ample.getQuestionHandler().getUsage(id);
 		int c = Ample.getConfigHandler().getAbuseRatio()[0];
@@ -46,14 +45,13 @@ public class ResponseListener {
 				public void run() {
 					if(!line.isEmpty()) {
 						if(line.length() > 4 && line.toLowerCase().substring(0, 4).equals("cmd:")) {
-							//String cmd = db.unescape(line.toLowerCase().substring(4));
-							//Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),FormatChat.formatChat(cmd.trim(),event.getPlayer()));
+							String cmd = line.toLowerCase().substring(4);
+							Ample.getModTransformer().runCommand(null, FormatChat.formatChat(cmd.trim(), event.getPlayer()));
 						} else if(line.length() > 5 && line.toLowerCase().substring(0, 5).equals("pcmd:")) {
-							//String cmd = db.unescape(line.toLowerCase().substring(5));
-							//Bukkit.getServer().dispatchCommand(event.getPlayer(),FormatChat.formatChat(cmd.trim(), event.getPlayer()));
+							String cmd = line.toLowerCase().substring(5);
+							Ample.getModTransformer().runCommand(event.getPlayer(),FormatChat.formatChat(cmd.trim(), event.getPlayer()));
 						} else if(line.length() > 3 && line.toLowerCase().substring(0, 3).equals("pm:")) {
-							//plugin.loger("pm to "+event.getPlayer().getName()+": "+line.substring(3));
-							//event.getPlayer().sendMessage(FormatChat.formatChat(FormatChat.setDisplay(Ample.getConfigHandler().getDisplay(),db.unescape(line.substring(3)), config.getBotName()), event));
+							event.getPlayer().sendMessage(FormatChat.formatChat(FormatChat.setDisplay(Ample.getConfigHandler().getDisplay(),line.substring(3), Ample.getConfigHandler().getBotName()), event.getPlayer()));
 						} else {
 							Ample.getModTransformer().broadcastMessage(fmsg);
 						}

@@ -2,7 +2,7 @@ name: AmpleChatBot
 main: com.drevelopment.amplechatbot.bukkit.BukkitPlugin
 version: ${version}
 author: Drepic26, matthewl6970, licks92
-softdepend: [Essentials]
+softdepend: [Vault]
 
 commands:
  answer:
@@ -28,6 +28,17 @@ commands:
   usage: /<command> <question id> <new question or keyphrase>
 
 permissions:
+ ample.*:
+  description: Gives access to all Ample commands
+  children:
+   ample.invoke: true
+   ample.edit: true
+   ample.qlist: true
+   ample.delete: true
+   ample.say: true
+   ample.allowabuse: true
+   ample.update: true
+   ample.url: true
  ample.invoke:
   description: Allows people to invoke responses.
  ample.edit:
