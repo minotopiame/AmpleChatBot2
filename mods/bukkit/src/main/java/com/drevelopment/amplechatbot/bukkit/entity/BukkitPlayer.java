@@ -7,9 +7,7 @@ import java.lang.reflect.Method;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.drevelopment.amplechatbot.api.Ample;
 import com.drevelopment.amplechatbot.bukkit.BukkitPlugin;
-import com.drevelopment.amplechatbot.bukkit.database.SQLDatabaseHandler;
 import com.drevelopment.amplechatbot.core.entity.SimplePlayer;
 import com.drevelopment.amplechatbot.core.util.Color;
 
