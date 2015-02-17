@@ -1,6 +1,7 @@
 package com.drevelopment.amplechatbot.bukkit;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import com.drevelopment.amplechatbot.bukkit.database.options.DatabaseOptions;
 import com.drevelopment.amplechatbot.bukkit.database.options.MySQLOptions;
 import com.drevelopment.amplechatbot.bukkit.database.options.SQLiteOptions;
 import com.drevelopment.amplechatbot.bukkit.listeners.BukkitListener;
+import com.drevelopment.amplechatbot.bukkit.metrics.Metrics;
 import com.drevelopment.amplechatbot.bukkit.permission.SuperPermsPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.permission.VaultPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.question.BukkitQuestionHandler;
@@ -49,6 +51,13 @@ public class BukkitPlugin extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new BukkitListener(this), this);
 		Ample.getEventHandler().subscribe(ResponseListener.class);
+
+		if (Ample.getConfigHandler().getUseMetrics()) {
+			try {
+				Metrics metrics = new Metrics(this);
+				metrics.start();
+			} catch (IOException e) {}
+		}
 	}
 
 	@Override
