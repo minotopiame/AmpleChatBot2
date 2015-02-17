@@ -18,6 +18,7 @@ import com.drevelopment.amplechatbot.bukkit.metrics.Metrics;
 import com.drevelopment.amplechatbot.bukkit.permission.SuperPermsPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.permission.VaultPermissionHandler;
 import com.drevelopment.amplechatbot.bukkit.question.BukkitQuestionHandler;
+import com.drevelopment.amplechatbot.bukkit.updater.Updater;
 import com.drevelopment.amplechatbot.core.commands.SimpleCommandHandler;
 import com.drevelopment.amplechatbot.core.event.SimpleEventHandler;
 import com.drevelopment.amplechatbot.core.listeners.ResponseListener;
@@ -57,6 +58,10 @@ public class BukkitPlugin extends JavaPlugin {
 				Metrics metrics = new Metrics(this);
 				metrics.start();
 			} catch (IOException e) {}
+		}
+
+		if (Ample.getConfigHandler().getAutoUpdate()) {
+			new Updater(this, 38442, this.getFile(), Updater.UpdateType.DEFAULT, false);
 		}
 	}
 
