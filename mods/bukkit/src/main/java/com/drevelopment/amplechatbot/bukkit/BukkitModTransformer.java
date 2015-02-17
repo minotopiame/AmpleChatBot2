@@ -20,8 +20,8 @@ public class BukkitModTransformer extends SimpleModTransformer {
 	}
 
 	@Override
-	public void scheduleRunnable(Runnable runnable) {
-		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable);
+	public void scheduleRunnable(Runnable runnable, Long delay) {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, runnable, delay);
 	}
 
 	@Override

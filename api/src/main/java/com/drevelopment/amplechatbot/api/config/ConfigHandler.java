@@ -53,4 +53,6 @@ public interface ConfigHandler {
 
 	public Integer[] getFloodRatio();
 
+	public Long getMsgDelay();
+
 }

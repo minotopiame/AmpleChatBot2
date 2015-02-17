@@ -10,7 +10,7 @@ public interface ModTransformer {
 	 * <p> Schedules a delayed task on the server
 	 * @param runnable Runnable to schedule
 	 */
-	public void scheduleRunnable(Runnable runnable);
+	public void scheduleRunnable(Runnable runnable, Long Delay);
 
 	/**
 	 * Gets the Player.

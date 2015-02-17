@@ -103,6 +103,11 @@ public class BukkitConfigHandler implements ConfigHandler {
 		return  ary;
 	}
 
+	@Override
+	public Long getMsgDelay() {
+		return config.getLong("Delay");
+	}
+
 	public String getSQLValue() {
 		return config.getString("sql-type");
 	}

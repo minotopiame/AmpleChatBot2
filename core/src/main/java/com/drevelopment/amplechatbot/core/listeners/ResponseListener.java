@@ -57,7 +57,7 @@ public class ResponseListener {
 						}
 					}
 				}
-			});
+			}, Ample.getConfigHandler().getMsgDelay());
 			}
 		} else {
 			if(Ample.getConfigHandler().getAbuseAction().equalsIgnoreCase("kick")) event.getPlayer().kickPlayer(Ample.getConfigHandler().getAbuseKick());
