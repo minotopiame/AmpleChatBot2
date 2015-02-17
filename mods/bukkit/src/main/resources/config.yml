@@ -34,9 +34,6 @@ Delay: 2
 # Anything greater then the percentage will be the response,
 Allowable: 80
 
-# Send to Multiple IRC channels
-#IRCChannels: '#AmpleChatBot,#chat2'
-#
 # Anti-Abuse Settings For Bot:
 # Protects bot from people looking to abuse it.
 #
