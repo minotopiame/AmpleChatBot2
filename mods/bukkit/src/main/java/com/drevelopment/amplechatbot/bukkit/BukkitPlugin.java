@@ -88,13 +88,9 @@ public class BukkitPlugin extends JavaPlugin {
 			if (dataop instanceof MySQLOptions) {
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Responses (`id` int AUTO_INCREMENT, `keyphrase` varchar(200), `response` varchar(200), PRIMARY KEY (id))");
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Usage (`dtime` integer, `question` integer, `player` varchar(50))");
-				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Spam (`dtime` integer, `action` integer, `player` varchar(50))");
-				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Flood (`dtime` integer, `action` integer, `player` varchar(50))");
 			} else if (dataop instanceof SQLiteOptions) {
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Responses (id INTEGER PRIMARY KEY AUTOINCREMENT, keyphrase varchar(200), response varchar(200))");
 				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Usage (dtime INTEGER, question INTEGER, player varchar(50))");
-				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Spam (dtime integer, action integer, player varchar(50))");
-				((SQLDatabaseHandler)Ample.getDatabaseHandler()).createTable("CREATE TABLE IF NOT EXISTS amplechatbot_Flood (dtime integer, action integer, player varchar(50))");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

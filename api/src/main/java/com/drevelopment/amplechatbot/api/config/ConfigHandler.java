@@ -41,18 +41,6 @@ public interface ConfigHandler {
 
 	public String getAbuseKick();
 
-	public String getSpamWarn();
-
-	public String[] getFloodAction();
-
-	public String getFloodWarn();
-
-	public String getFloodKick();
-
-	public String getFloodBan();
-
-	public Integer[] getFloodRatio();
-
 	public Long getMsgDelay();
 
 }

@@ -70,40 +70,6 @@ public class BukkitConfigHandler implements ConfigHandler {
 	}
 
 	@Override
-	public String getSpamWarn() {
-		return config.getString("SpamWarn", "Please do not spam!");
-	}
-
-	@Override
-	public String[] getFloodAction() {
-		return config.getString("FloodAction", "warn,kick,ban").split(",");
-	}
-
-	@Override
-	public String getFloodWarn() {
-		return config.getString("FloodWarn", "Please do not flood the server!");
-	}
-
-	@Override
-	public String getFloodKick() {
-		return config.getString("FloodKick", "You have been kicked for flooding the server!");
-	}
-
-	@Override
-	public String getFloodBan() {
-		return config.getString("FloodBan", "You have been banned for flooding the server!");
-	}
-
-	@Override
-	public Integer[] getFloodRatio() {
-		String[] ratio = config.getString("FloodRatio", "5;10").split(";");
-		Integer v1 = Integer.parseInt(ratio[0]);
-		Integer v2 = Integer.parseInt(ratio[1]);
-		Integer[] ary = {v1, v2};
-		return  ary;
-	}
-
-	@Override
 	public Long getMsgDelay() {
 		return config.getLong("Delay");
 	}
