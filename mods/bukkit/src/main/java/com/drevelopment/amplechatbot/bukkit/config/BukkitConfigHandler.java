@@ -71,31 +71,31 @@ public class BukkitConfigHandler implements ConfigHandler {
 
 	@Override
 	public Long getMsgDelay() {
-		return config.getLong("Delay");
+		return config.getLong("Delay", 2L);
 	}
 
 	public String getSQLValue() {
-		return config.getString("sql-type");
+		return config.getString("sql-type", "SQLite");
 	}
 
 	public String getHostname() {
-		return config.getString("MySQL-options.hostname");
+		return config.getString("MySQL-options.hostname", "localhost");
 	}
 
 	public String getPort() {
-		return config.getString("MySQL-options.port");
+		return config.getString("MySQL-options.port", "3306");
 	}
 
 	public String getDatabase() {
-		return config.getString("MySQL-options.database");
+		return config.getString("MySQL-options.database", "AmpleChatBot");
 	}
 
 	public String getUsername() {
-		return config.getString("MySQL-options.username");
+		return config.getString("MySQL-options.username", "minecraft");
 	}
 
 	public String getPassword() {
-		return config.getString("MySQL-options.password");
+		return config.getString("MySQL-options.password", "password");
 	}
 
 }
