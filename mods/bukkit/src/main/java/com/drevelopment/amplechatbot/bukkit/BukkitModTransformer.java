@@ -39,13 +39,11 @@ public class BukkitModTransformer extends SimpleModTransformer {
 
 	@Override
 	public void broadcastMessage(String message) {
-		///message = ((SQLDatabaseHandler)Ample.getDatabaseHandler()).unescapeQuotes(message);
 		Bukkit.broadcastMessage(message);
 	}
 
 	@Override
 	public void runCommand(CommandSender sender, String command) {
-		//command = ((SQLDatabaseHandler)Ample.getDatabaseHandler()).unescapeQuotes(command);
 		if (sender instanceof Player) {
 			Bukkit.getServer().dispatchCommand(Bukkit.getPlayer(UUID.fromString(((Player) sender).getUUID())), command);
 		} else {
