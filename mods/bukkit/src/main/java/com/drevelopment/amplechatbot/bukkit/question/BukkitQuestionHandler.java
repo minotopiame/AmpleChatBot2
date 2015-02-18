@@ -133,8 +133,8 @@ public class BukkitQuestionHandler implements QuestionHandler {
 			ResultSet rs = databaseHandler.query("SELECT * FROM amplechatbot_Responses ORDER BY keyphrase DESC");
 			if (rs != null) {
 				while (rs.next()) {
-					message = message.toLowerCase();
-					String response = databaseHandler.unescapeQuotes(rs.getString("keyphrase").toLowerCase());
+					message = message.toLowerCase().replaceAll("[^a-zA-Z0-9]+", "");
+					String response = databaseHandler.unescapeQuotes(rs.getString("keyphrase").toLowerCase()).replaceAll("[^a-zA-Z0-9]+", "");
 					double reslength = response.length();
 					double msglength = message.length();
 					double rel;
