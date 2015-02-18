@@ -186,6 +186,7 @@ public class BukkitQuestionHandler implements QuestionHandler {
 		int usage = 0;
 		try {
 			ResultSet rs = databaseHandler.query("SELECT COUNT(dtime) FROM amplechatbot_Usage WHERE question = "+id+" AND dtime < "+databaseHandler.currentEpoch()+" AND dtime > "+(databaseHandler.currentEpoch() - Ample.getConfigHandler().getAbuseRatio()[1]));
+			if (databaseHandler.getDatabaseOptions() instanceof MySQLOptions) rs.first();
 			usage = rs.getInt(1);
 			return usage;
 		} catch (SQLException e) {

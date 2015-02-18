@@ -98,14 +98,12 @@ public class SQLDatabaseHandler implements DatabaseHandler {
 	public int currentEpoch() {
 		try {
 			if (dop instanceof MySQLOptions) {
-				Connection connection = this.getConnection();
-				Statement statement = connection.createStatement();
+				Statement statement = conn.createStatement();
 				ResultSet rs = statement.executeQuery("SELECT UNIX_TIMESTAMP(now());");
 				rs.first();
 				return rs.getInt(1);
 			} else if (dop instanceof SQLiteOptions) {
-				Connection connection = this.getConnection();
-				Statement statement = connection.createStatement();
+				Statement statement = conn.createStatement();
 				ResultSet rs = statement.executeQuery("SELECT strftime('%s','now');");
 				return rs.getInt(1);
 			}
