@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.drevelopment.amplechatbot.api.Ample;
 import com.drevelopment.amplechatbot.api.command.Command;
@@ -28,6 +29,11 @@ public class BukkitListener implements Listener {
 		if (handleCommandEvent(Command.Sender.PLAYER, player, command)) {
 			event.setCancelled(true);
 		}
+	}
+
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		Ample.getModTransformer().removePlayer(Ample.getModTransformer().getPlayer(event.getPlayer().getUniqueId().toString()));
 	}
 
 	private boolean handleCommandEvent(Command.Sender type, Player sender, String message) {
