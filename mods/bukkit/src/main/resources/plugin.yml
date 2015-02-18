@@ -21,11 +21,8 @@ commands:
   description:  Allows to use say command.
   usage: /<command> <messageD>
  ample:
-  description: No longer just a Displays help for the Ample plugin.
+  description: Displays help for this plugin.
   usage: /<command> <subcommand>
- ampleupdate:
-  description:  Updates an existing question or keyphrase.
-  usage: /<command> <question id> <new question or keyphrase>
 
 permissions:
  ample.*:
@@ -37,8 +34,6 @@ permissions:
    ample.delete: true
    ample.say: true
    ample.allowabuse: true
-   ample.update: true
-   ample.url: true
  ample.invoke:
   description: Allows people to invoke responses.
  ample.edit:
@@ -51,7 +46,3 @@ permissions:
   description: Allows to use say command.
  ample.allowabuse:
   description: Allows to bypass abuse routines.
- ample.update:
-  description: Allows the player to see if an update is available
- ample.url:
-  description: Allows the player to use links in chat
