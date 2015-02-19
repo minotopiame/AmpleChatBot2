@@ -2,7 +2,7 @@
 ===============
 <!--Because I'm super lazy every image here is going to be stitched
     together. Please don't kill me. http://imgur.com/a/W4aYd -->
- ![statussymbols](http://i.imgur.com/HXY3dwa.png)
+ ![statussymbols](http://i.imgur.com/giMW91o.png)
 
 Building
 =
