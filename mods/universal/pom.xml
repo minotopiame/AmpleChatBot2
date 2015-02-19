@@ -5,12 +5,12 @@
   <name>AmpleChatBot-Universal</name>
   <url>https://github.com/Drepic26/AmpleChatBot2</url>
   <packaging>jar</packaging>
-  <version>2.0-SNAPSHOT</version>
+  <version>2.0</version>
 
   <parent>
     <groupId>com.drevelopment.amplechatbot</groupId>
     <artifactId>amplechatbot-parent</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>2.0</version>
     <relativePath>../../</relativePath>
   </parent>
 
@@ -29,31 +29,31 @@
     <dependency>
       <groupId>com.drevelopment.amplechatbot</groupId>
       <artifactId>core</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>2.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.drevelopment.amplechatbot.mods</groupId>
       <artifactId>bukkit</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>2.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.drevelopment.amplechatbot.mods</groupId>
       <artifactId>sponge</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>2.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.drevelopment.amplechatbot.mods</groupId>
       <artifactId>granite</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>2.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.drevelopment.amplechatbot.mods</groupId>
       <artifactId>canary</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>2.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
