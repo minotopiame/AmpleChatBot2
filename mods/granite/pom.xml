@@ -5,12 +5,11 @@
   <name>AmpleChatBot-Granite</name>
   <url>https://github.com/Drepic26/AmpleChatBot2</url>
   <packaging>jar</packaging>
-  <version>2.0</version>
 
   <parent>
     <groupId>com.drevelopment.amplechatbot</groupId>
     <artifactId>amplechatbot-parent</artifactId>
-    <version>2.0</version>
+    <version>2.0.1</version>
     <relativePath>../../</relativePath>
   </parent>
 
@@ -33,7 +32,7 @@
     <dependency>
       <groupId>com.drevelopment.amplechatbot</groupId>
       <artifactId>core</artifactId>
-      <version>2.0</version>
+      <version>2.0.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
