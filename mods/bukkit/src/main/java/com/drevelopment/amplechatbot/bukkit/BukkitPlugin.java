@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+import com.drevelopment.amplechatbot.bukkit.plugins.citizens.AmpleTrait;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.trait.TraitInfo;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.drevelopment.amplechatbot.api.Ample;
@@ -62,6 +66,10 @@ public class BukkitPlugin extends JavaPlugin {
 
 		if (Ample.getConfigHandler().getAutoUpdate()) {
 			new Updater(this, 38442, this.getFile(), Updater.UpdateType.DEFAULT, false);
+		}
+
+		if (Bukkit.getPluginManager().getPlugin("Citizens") != null) {
+			CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(AmpleTrait.class).withName("ampletrait"));
 		}
 	}
 

@@ -30,6 +30,10 @@
       <id>Vault</id>
       <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
     </repository>
+    <repository>
+      <id>Citizens</id>
+      <url>http://repo.citizensnpcs.co/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -50,6 +54,11 @@
       <artifactId>VaultAPI</artifactId>
       <version>1.5</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.citizensnpcs</groupId>
+      <artifactId>citizensapi</artifactId>
+      <version>2.0.16-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
