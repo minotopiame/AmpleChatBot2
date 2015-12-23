@@ -26,11 +26,15 @@ import com.drevelopment.amplechatbot.core.util.LocaleHandler;
 
 public class BukkitPlugin extends JavaPlugin {
 
+    public static boolean enabled = true;
+
 	private Logger logger;
 
 	@Override
 	public void onEnable() {
 		logger = this.getLogger();
+
+        getCommand("ampletoggle").setExecutor(new ToggleCommandExecutor());
 
 		Ample.setEventHandler(new SimpleEventHandler());
 		Ample.setCommandHandler(new SimpleCommandHandler());

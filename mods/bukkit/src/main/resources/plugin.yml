@@ -23,6 +23,9 @@ commands:
  ample:
   description: Displays help for this plugin.
   usage: /<command> <subcommand>
+ ampletoggle:
+  description: Toggle active state of the bot
+  usage: /<command>
 
 permissions:
  ample.*:
@@ -35,6 +38,7 @@ permissions:
    ample.delete: true
    ample.say: true
    ample.allowabuse: true
+   ample.toggle: true
  ample.invoke:
   description: Allows people to invoke responses.
   default: true
@@ -52,4 +56,7 @@ permissions:
   default: op
  ample.allowabuse:
   description: Allows to bypass abuse routines.
+  default: op
+ ample.toggle:
+  description: Allows to toggle active state of the bot.
   default: op
