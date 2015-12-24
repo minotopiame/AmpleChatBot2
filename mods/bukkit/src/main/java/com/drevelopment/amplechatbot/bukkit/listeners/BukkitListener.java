@@ -67,7 +67,7 @@ public class BukkitListener implements Listener {
 
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
-		if (!event.isCancelled()) {
+        if (BukkitPlugin.enabled && !event.isCancelled()) {
 			Ample.getEventHandler().post(new PlayerChatEvent(Ample.getModTransformer().getPlayer(event.getPlayer().getUniqueId().toString()), event.getMessage()));
 		}
 	}
