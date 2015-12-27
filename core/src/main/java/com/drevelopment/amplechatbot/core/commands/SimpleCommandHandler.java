@@ -52,6 +52,7 @@ public class SimpleCommandHandler implements CommandHandler {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Qlist"));
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Delquestion"));
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Amplesay"));
+            sender.sendMessage("§6|--&e/ampletoggle");
 			return true;
 		} else if (command.equalsIgnoreCase("question")) {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Header"));
@@ -64,7 +65,7 @@ public class SimpleCommandHandler implements CommandHandler {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Answer"));
 			return true;
 		} else if (command.equalsIgnoreCase("qlist")) {
-			new QListCommand(sender, null).run();;
+			new QListCommand(sender, null).run();
 			return true;
 		} else if (command.equalsIgnoreCase("delquestion")) {
 			sender.sendMessage(LocaleHandler.getString("Command.Help.Header"));
